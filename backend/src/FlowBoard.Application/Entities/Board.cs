@@ -9,4 +9,6 @@ public class Board
     public DateTime CreatedAt { get; set; }
 
     public ICollection<BoardList> Lists { get; set; } = new List<BoardList>();
+    public ICollection<Label> Labels { get; set; } = new List<Label>();
+    public ICollection<BoardMember> Members { get; set; } = new List<BoardMember>();
 }

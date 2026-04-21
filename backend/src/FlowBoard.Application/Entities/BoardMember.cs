@@ -1,0 +1,17 @@
+namespace FlowBoard.Application.Entities;
+
+public enum BoardRole
+{
+    Member = 0,
+    Owner = 1,
+}
+
+public class BoardMember
+{
+    public Guid BoardId { get; set; }
+    public Board Board { get; set; } = null!;
+    public Guid UserId { get; set; }
+    public User User { get; set; } = null!;
+    public BoardRole Role { get; set; }
+    public DateTime JoinedAt { get; set; }
+}

@@ -17,5 +17,34 @@ services:
       timeout: 5s
       retries: 5
 
+  api:
+    build: ./backend
+    container_name: flowboard-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__Postgres: "Host=postgres;Port=5432;Database=flowboard;Username=flowboard;Password=flowboard"
+      Jwt__Issuer: FlowBoard
+      Jwt__Audience: FlowBoard.Client
+      Jwt__Key: ${JWT_KEY:-flowboard-dev-only-secret-change-in-production-min-32-chars}
+      Jwt__ExpiresInMinutes: 1440
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "5296:8080"
+
+  web:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:5296
+    container_name: flowboard-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "5173:80"
+
 volumes:
   flowboard-data:

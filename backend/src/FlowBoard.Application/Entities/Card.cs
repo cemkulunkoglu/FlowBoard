@@ -11,4 +11,8 @@ public class Card
     public BoardList List { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+
+    public ICollection<Label> Labels { get; set; } = new List<Label>();
+    public ICollection<User> Assignees { get; set; } = new List<User>();
+    public ICollection<ChecklistItem> ChecklistItems { get; set; } = new List<ChecklistItem>();
 }
