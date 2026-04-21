@@ -230,14 +230,20 @@ export function CardDetailModal({
 
   return (
     <div
-      className="fixed inset-0 z-40 flex items-start justify-center bg-slate-900/40 px-4 py-12"
+      className="fixed inset-0 z-40 flex items-start justify-center bg-slate-900/50 px-4 py-8 backdrop-blur-sm animate-[fadeIn_0.15s_ease-out] md:py-12"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl rounded-2xl bg-white shadow-xl dark:bg-slate-900"
+        className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-slate-900/5 animate-[scaleIn_0.18s_ease-out] dark:bg-slate-900 dark:ring-white/10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-start justify-between border-b border-slate-100 px-5 py-4 dark:border-slate-800">
+        <div className="flex items-center gap-3 border-b border-slate-100 px-6 py-4 dark:border-slate-800">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 dark:bg-primary-500/10 dark:text-primary-400">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </div>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -246,17 +252,24 @@ export function CardDetailModal({
           />
           <button
             onClick={onClose}
-            className="ml-2 text-slate-400 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-200"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 dark:text-slate-500 dark:hover:bg-slate-800 dark:hover:text-slate-200"
             aria-label="Kapat"
           >
-            ✕
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
           </button>
         </div>
 
-        <div className="space-y-4 px-5 py-4">
+        <div className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
           <div>
-            <div className="mb-1 flex items-center justify-between">
-              <label className="text-xs font-medium text-slate-600 dark:text-slate-400">
+            <div className="mb-2 flex items-center justify-between">
+              <label className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                  <line x1="7" y1="7" x2="7.01" y2="7" />
+                </svg>
                 Etiketler
               </label>
               <button
@@ -342,8 +355,14 @@ export function CardDetailModal({
           </div>
 
           <div>
-            <div className="mb-1 flex items-center justify-between">
-              <label className="text-xs font-medium text-slate-600 dark:text-slate-400">
+            <div className="mb-2 flex items-center justify-between">
+              <label className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
                 Atananlar
               </label>
               <button
@@ -396,7 +415,11 @@ export function CardDetailModal({
                           {u.displayName.split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase()}
                         </span>
                         <span className="flex-1 truncate">{u.displayName}</span>
-                        {active && <span className="text-primary-600 dark:text-primary-400">✓</span>}
+                        {active && (
+                          <svg className="text-primary-600 dark:text-primary-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        )}
                       </button>
                     );
                   })}
@@ -406,9 +429,14 @@ export function CardDetailModal({
           </div>
 
           <div>
-            <div className="mb-1 flex items-center justify-between">
-              <label className="text-xs font-medium text-slate-600 dark:text-slate-400">
-                Açıklama (Markdown)
+            <div className="mb-2 flex items-center justify-between">
+              <label className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="17" x2="14" y2="17" />
+                </svg>
+                Açıklama
               </label>
               <button
                 type="button"
@@ -442,8 +470,12 @@ export function CardDetailModal({
           </div>
 
           <div>
-            <div className="mb-1 flex items-center justify-between">
-              <label className="text-xs font-medium text-slate-600 dark:text-slate-400">
+            <div className="mb-2 flex items-center justify-between">
+              <label className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 11 12 14 22 4" />
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                </svg>
                 Kontrol listesi
               </label>
               {sortedChecklist.length > 0 && (
@@ -485,10 +517,13 @@ export function CardDetailModal({
                   <button
                     type="button"
                     onClick={() => handleChecklistDelete(item)}
-                    className="text-xs text-slate-400 opacity-0 transition group-hover:opacity-100 hover:text-danger-500"
+                    className="text-slate-400 opacity-0 transition group-hover:opacity-100 hover:text-danger-500"
                     aria-label="Maddeyi sil"
                   >
-                    ✕
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
                   </button>
                 </li>
               ))}
@@ -512,7 +547,13 @@ export function CardDetailModal({
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400">
+            <label className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
               Bitiş tarihi
             </label>
             <input
@@ -524,8 +565,11 @@ export function CardDetailModal({
           </div>
 
           <div>
-            <label className="mb-2 block text-xs font-medium text-slate-600 dark:text-slate-400">
-              Yorumlar {comments.length > 0 && `(${comments.length})`}
+            <label className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              Yorumlar {comments.length > 0 && <span className="text-slate-400 dark:text-slate-500">({comments.length})</span>}
             </label>
 
             {commentsLoading ? (
@@ -562,10 +606,13 @@ export function CardDetailModal({
                       <button
                         type="button"
                         onClick={() => handleCommentDelete(c.id)}
-                        className="text-xs text-slate-400 opacity-0 transition group-hover:opacity-100 hover:text-danger-500"
+                        className="text-slate-400 opacity-0 transition group-hover:opacity-100 hover:text-danger-500"
                         aria-label="Yorumu sil"
                       >
-                        ✕
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
                       </button>
                     )}
                   </li>
@@ -592,24 +639,28 @@ export function CardDetailModal({
           </div>
         </div>
 
-        <div className="flex items-center justify-between border-t border-slate-100 px-5 py-3 dark:border-slate-800">
+        <div className="flex items-center justify-between gap-2 border-t border-slate-100 bg-slate-50/50 px-6 py-3 dark:border-slate-800 dark:bg-slate-900/50">
           <button
             onClick={handleDelete}
-            className="text-xs text-danger-600 hover:text-danger-700 dark:text-danger-400 dark:hover:text-danger-300"
+            className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-danger-600 transition hover:bg-danger-50 dark:text-danger-400 dark:hover:bg-danger-500/10"
           >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
             Kartı sil
           </button>
           <div className="flex gap-2">
             <button
               onClick={onClose}
-              className="rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
+              className="rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
             >
               İptal
             </button>
             <button
               onClick={handleSave}
               disabled={saving}
-              className="rounded-lg bg-primary-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-primary-700 disabled:opacity-60"
+              className="rounded-lg bg-primary-600 px-4 py-1.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-700 active:scale-[0.98] disabled:opacity-60"
             >
               {saving ? 'Kaydediliyor…' : 'Kaydet'}
             </button>
